@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const nytRouter = require("./router/nytRouter");
+require('dotenv-safe').config();
 
 app.use("/v1/stories", nytRouter);
 
