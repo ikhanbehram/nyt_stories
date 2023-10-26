@@ -6,7 +6,7 @@ const Tabs = [
   {
     id: "general",
     key: "General",
-    Value: "home",
+    value: "home",
   },
   {
     id: "arts",

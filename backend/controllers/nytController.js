@@ -8,7 +8,7 @@ module.exports = {
         return res.status(400).send("Stories type query is not passed");
       }
       const stories = await getNytStories(storiesType);
-      res.json(stories);
+      res.json(stories.results);
     } catch (err) {
       res
         .status(err.status || 500)

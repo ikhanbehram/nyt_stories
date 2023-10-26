@@ -6,5 +6,4 @@ function Tab({title, subTitle}) {
         </div>
     )
 }
-
 export default Tab;
