@@ -18,7 +18,7 @@ function NytStoriesPage() {
               </h1>
             </div>
           </div>
-          {!error && !isLoading && data && (
+          {data && (
             <div className="flex gap-3 flex-wrap py-4">
               {data.map((result) => {
                 return (

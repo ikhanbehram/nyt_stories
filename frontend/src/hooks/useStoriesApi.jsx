@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-function useStoriesApi(props) {
+function useStoriesApi(storiesType) {
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState([]);
   const [error, setError] = useState(null);
@@ -8,17 +8,25 @@ function useStoriesApi(props) {
   async function getStoriesApi() {
     setIsLoading(true);
     try {
-      const json = await fetch(
-        `${import.meta.env.VITE_BASE_URL}/api/v1/stories?storiesType=${props}`,
+      const response = await fetch(
+        `${import.meta.env.VITE_BASE_URL}/api/v1/stories?storiesType=${storiesType}`,
         {
           method: "GET",
-          "Content-Type": "application/json",
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
       );
-      const data = await json.json();
-      setData(data);
+
+      if (!response.ok) {
+        throw new Error(`Request failed with status: ${response.status}`);
+      }
+
+      const responseData = await response.json();
+      setData(responseData);
+      setError(null);
     } catch (err) {
-      console.log(err);
+      console.error(err);
       setError(err);
     } finally {
       setIsLoading(false);
@@ -27,7 +35,7 @@ function useStoriesApi(props) {
 
   useEffect(() => {
     getStoriesApi();
-  }, []);
+  }, [storiesType]);
 
   return { data, isLoading, error };
 }
