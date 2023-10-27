@@ -14,11 +14,6 @@ const Tabs = [
     value: "arts",
   },
   {
-    id: "science",
-    key: "Science",
-    value: "science",
-  },
-  {
     id: "us",
     key: "US",
     value: "us",
